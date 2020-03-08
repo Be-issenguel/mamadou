@@ -67,7 +67,7 @@ class ProdutoController extends Controller
      */
     public function edit($id)
     {
-        //
+        $produto = 2;
     }
 
     /**
@@ -90,6 +90,7 @@ class ProdutoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Produto::destroy(decrypt($id));
+        return back();
     }
 }

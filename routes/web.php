@@ -26,6 +26,8 @@ Route::middleware(['auth'])->group(function () {
         Route::post('cadastrar', 'ProdutoController@store');
 
         Route::get('listagem', 'ProdutoController@index');
+
+        Route::get('destroy/{id}', 'ProdutoController@destroy');
     });
 
 });
