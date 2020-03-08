@@ -24,6 +24,8 @@ Route::middleware(['auth'])->group(function () {
         Route::get('novo', 'ProdutoController@create');
 
         Route::post('cadastrar', 'ProdutoController@store');
+
+        Route::get('listagem', 'ProdutoController@index');
     });
 
 });

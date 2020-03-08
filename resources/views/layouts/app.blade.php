@@ -60,7 +60,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
     </i></div>
     <div id="produtos" class="w3-hide w3-black w3-card-4">
         <a href="{{ action('ProdutoController@create') }}" class="w3-bar-item w3-button" id="inside-link"> <i class="fa fa-plus-square"></i> Nova Entrada </a>
-        <a href="#" class="w3-bar-item w3-button" id="inside-link"> <i class="fa fa-list"></i> Lista de Entradas</a>
+        <a href="{{ action('ProdutoController@index') }}" class="w3-bar-item w3-button" id="inside-link"> <i class="fa fa-list"></i> Lista de Entradas</a>
     </div>
 
     <div class="w3-bar-item w3-button" onclick="myAccFunc('vendas')">
