@@ -24,8 +24,8 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
     </div>
     <div class="w3-col s8 w3-bar">
       <span><strong>{{ Auth::user()->name }}</strong></span><br>
+      <a href="{{ route('home') }}" class="w3-bar-item w3-button"><i class="fa fa-home"></i></a>
       <a href="#" class="w3-bar-item w3-button"><i class="fa fa-user"></i></a>
-      <a href="#" class="w3-bar-item w3-button"><i class="fa fa-cog"></i></a>
       <a class="w3-bar-item w3-button" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"> <i class="fa fa-power-off"></i></a>
       <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
         @csrf
@@ -59,7 +59,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
         <i class="fa fa-cubes"></i> Produtos 
     </i></div>
     <div id="produtos" class="w3-hide w3-black w3-card-4">
-        <a href="#" class="w3-bar-item w3-button" id="inside-link"> <i class="fa fa-plus-square"></i> Nova Entrada </a>
+        <a href="{{ action('ProdutoController@create') }}" class="w3-bar-item w3-button" id="inside-link"> <i class="fa fa-plus-square"></i> Nova Entrada </a>
         <a href="#" class="w3-bar-item w3-button" id="inside-link"> <i class="fa fa-list"></i> Lista de Entradas</a>
     </div>
 
@@ -92,7 +92,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
   
   <!-- Header -->
   <header class="w3-container" style="padding-top:22px">
-    <h5><b><i class="fa fa-dashboard"></i> @yield('titulo')</b></h5>
+    <h2><b><i class="fa fa-dashboard"></i> @yield('titulo')</b></h2>
   </header>
 
   <div class="w3-container">

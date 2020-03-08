@@ -1944,3 +1944,10 @@ a {
 .w3-hover-border-pale-blue:hover {
     border-color: #e7ffff!important
 }
+
+
+/** meu estilo */
+
+.w3-error {
+    color: red;
+}

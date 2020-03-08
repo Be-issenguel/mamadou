@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('titulo')
-    {{ __('Painel Principal') }}
+    {{ __('PAINEL PRINCIPAL') }}
 @endsection
 
 @section('conteudo')
