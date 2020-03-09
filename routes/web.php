@@ -28,6 +28,10 @@ Route::middleware(['auth'])->group(function () {
         Route::get('listagem', 'ProdutoController@index');
 
         Route::get('destroy/{id}', 'ProdutoController@destroy');
+
+        Route::get('edit/{id}', 'ProdutoController@edit');
+
+        Route::post('update', 'ProdutoController@update');
     });
 
 });

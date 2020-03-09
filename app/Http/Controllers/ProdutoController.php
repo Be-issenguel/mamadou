@@ -67,7 +67,8 @@ class ProdutoController extends Controller
      */
     public function edit($id)
     {
-        $produto = 2;
+        $produto = Produto::find(decrypt($id));
+        return view('produto.novo')->withProduto($produto);
     }
 
     /**
@@ -77,9 +78,21 @@ class ProdutoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $request->validate([
+            'descricao' => 'required',
+            'quantidade' => 'required|integer',
+            'preco_de_compra' => 'required|numeric',
+            'preco_de_venda' => 'required|numeric',
+        ]);
+        $produto = Produto::find(decrypt($request->id));
+        $produto->descricao = $request->descricao;
+        $produto->quantidade = $request->quantidade;
+        $produto->preco_compra = $request->preco_de_compra;
+        $produto->preco_venda = $request->preco_de_venda;
+        $produto->save();
+        return redirect()->action('ProdutoController@index');
     }
 
     /**
