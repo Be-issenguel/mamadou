@@ -93,7 +93,7 @@ return [
     'not_regex' => 'The :attribute format is invalid.',
     'numeric' => 'O campo :attribute deve ser um número',
     'present' => 'The :attribute field must be present.',
-    'regex' => 'The :attribute format is invalid.',
+    'regex' => 'O :attribute que tenta inserir é inválido.',
     'required' => 'O campo :attribute descrição é obrigatório',
     'required_if' => 'The :attribute field is required when :other is :value.',
     'required_unless' => 'The :attribute field is required unless :other is in :values.',

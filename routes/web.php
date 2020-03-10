@@ -34,4 +34,12 @@ Route::middleware(['auth'])->group(function () {
         Route::post('update', 'ProdutoController@update');
     });
 
+    Route::prefix('fornecedor')->group(function () {
+        Route::get('create', 'FornecedorController@create');
+
+        Route::post('store', 'FornecedorController@store');
+
+        Route::get('listagem', 'FornecedorController@index');
+    });
+
 });
