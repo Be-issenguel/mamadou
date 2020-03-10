@@ -26,7 +26,7 @@
                 <button class="w3-button w3-blue"> <i class="fa fa-cogs"></i> </button>
                 <div class="w3-dropdown-content w3-bar-block w3-border">
                   <a href="{{ action('ProdutoController@edit',['id' => encrypt($fornecedor->id)]) }}" class="w3-bar-item w3-button"> <i class="fa fa-edit"></i> editar</a>
-                  <a href="{{ action('ProdutoController@destroy',['id' => encrypt($fornecedor->id)]) }}" class="w3-bar-item w3-button"> <i class="fa fa-trash-alt"></i> remover</a>
+                  <a href="{{ action('FornecedorController@destroy',['id' => encrypt($fornecedor->id)]) }}" class="w3-bar-item w3-button"> <i class="fa fa-trash-alt"></i> remover</a>
                 </div>
               </div>
             </td>

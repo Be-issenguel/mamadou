@@ -90,6 +90,7 @@ class FornecedorController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Fornecedor::destroy(decrypt($id));
+        return back();
     }
 }

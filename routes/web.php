@@ -40,6 +40,8 @@ Route::middleware(['auth'])->group(function () {
         Route::post('store', 'FornecedorController@store');
 
         Route::get('listagem', 'FornecedorController@index');
+
+        Route::get('destroy/{id}', 'FornecedorController@destroy');
     });
 
 });
