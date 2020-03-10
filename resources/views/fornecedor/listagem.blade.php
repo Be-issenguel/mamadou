@@ -8,6 +8,9 @@
 <div class="w3-container">
   <table class="w3-table-all">
     <thead>
+      <a href="{{ action('FornecedorController@create') }}" class="" style="margin-left: 92%">
+        <button class="w3-button w3-xlarge w3-circle w3-blue">+</button>
+      </a>
       <tr class="w3-red">
         <th><i class="fa fa-user"></i> Nome</th>
         <th><i class="fa fa-venus-mars"></i> Gênero</th>
