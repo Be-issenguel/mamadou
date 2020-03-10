@@ -33,8 +33,8 @@
   <div class="w3-col" style="width:50px"><i class="w3-xxlarge fa fa-venus-mars"></i></div>
     <div class="w3-rest">
       <select class="w3-input w3-border" name="genero" id="">
-        <option value="M">Masculino</option>
-        <option value="F">Feminino</option>
+        <option value="Masculino">Masculino</option>
+        <option value="Feminino">Feminino</option>
       </select>
     </div>
 </div>
@@ -42,7 +42,7 @@
 <div class="w3-row w3-section">
   <div class="w3-col" style="width:50px"><i class="w3-xxlarge fa fa-phone"></i></div>
     <div class="w3-rest">
-      <input class="w3-input w3-border" name="telefone" type="text" value="{{ isset($fornecedor->id)?$fornecedor->preco_venda:old('telefone') }}" placeholder="telefone">
+      <input class="w3-input w3-border" name="telefone" type="text" value="{{ isset($fornecedor->id)?$fornecedor->telefone:old('telefone') }}" placeholder="telefone">
       @if ($errors->has('telefone'))
         <span class="w3-error">{{ $errors->first('telefone') }}</span>
       @endif

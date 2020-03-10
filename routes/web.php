@@ -42,6 +42,10 @@ Route::middleware(['auth'])->group(function () {
         Route::get('listagem', 'FornecedorController@index');
 
         Route::get('destroy/{id}', 'FornecedorController@destroy');
+
+        Route::get('edit/{id}', 'FornecedorController@edit');
+
+        Route::post('update', 'FornecedorController@update');
     });
 
 });

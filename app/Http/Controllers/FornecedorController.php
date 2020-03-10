@@ -42,7 +42,7 @@ class FornecedorController extends Controller
         $fornecedor->user_id = Auth::user()->id;
         $fornecedor->nome = $request->nome;
         $fornecedor->nif = $request->nif;
-        //$fornecedor->genero = $request->genero;
+        $fornecedor->genero = $request->genero;
         $fornecedor->telefone = $request->telefone;
         $fornecedor->save();
         return redirect()->action('FornecedorController@index');
@@ -67,7 +67,8 @@ class FornecedorController extends Controller
      */
     public function edit($id)
     {
-        //
+        $fornecedor = Fornecedor::find(decrypt($id));
+        return view('fornecedor.novo')->withFornecedor($fornecedor);
     }
 
     /**
@@ -77,9 +78,21 @@ class FornecedorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $request->validate([
+            'nome' => 'required',
+            'nif' => 'required|regex:/^[0-9]{9}[A-Z]{2}[0-9]{3}$/i',
+            'genero' => 'required',
+            'telefone' => 'required|regex:/^[9]{1}[1-9]{1}[0-9]{7}$/i',
+        ]);
+        $fornecedor = Fornecedor::find(decrypt($request->id));
+        $fornecedor->nome = $request->nome;
+        $fornecedor->genero = $request->genero;
+        $fornecedor->nif = $request->nif;
+        $fornecedor->telefone = $request->telefone;
+        $fornecedor->save();
+        return redirect()->action('FornecedorController@index');
     }
 
     /**
