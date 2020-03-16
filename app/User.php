@@ -55,4 +55,19 @@ class User extends Authenticatable
             'user_id' => $this->id,
         ]);
     }
+
+    public function isGrouped($user_id, $role_id)
+    {
+        $retorno = DB::table('role_user')
+            ->where([
+                ['user_id', '=', $user_id],
+                ['role_id', '=', $role_id],
+            ])
+            ->get();
+        if (count($retorno) > 0) {
+            return true;
+        }
+
+        return false;
+    }
 }

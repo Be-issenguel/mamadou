@@ -28,8 +28,10 @@ class UserController extends Controller
      */
     public function create()
     {
-        $roles = Role::all();
-        return view('funcionario.novo')->withRoles($roles);
+        $dados = [
+            'roles' => $roles = Role::all(),
+        ];
+        return view('funcionario.novo')->withDados($dados);
     }
 
     /**
@@ -70,7 +72,11 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $dados = [
+            'funcionario' => User::find(decrypt($id)),
+            'roles' => Role::all(),
+        ];
+        return view('funcionario.novo')->withDados($dados);
     }
 
     /**
@@ -80,9 +86,28 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $user = User::find(decrypt($request->id));
+        $request->validate([
+            'nome' => 'required',
+            'email' => 'email|required',
+            'telefone' => 'required|regex:/^[9]{1}[1-9]{1}[0-9]{7}$/i',
+            'papel' => ['required',
+                function ($attribute, $value, $fail) use ($request, $user) {
+                    if ($user->isGrouped(decrypt($request->id), $request->papel)) {
+                        $fail('Este utilizador já pertence a este grupo');
+                    }
+                },
+            ],
+        ]);
+        $user->name = $request->nome;
+        $user->email = $request->email;
+        $user->genero = $request->genero;
+        $user->telefone = $request->telefone;
+        $user->save();
+        $user->saveRole($request->papel);
+        return redirect()->action('UserController@index');
     }
 
     /**

@@ -55,6 +55,10 @@ Route::middleware(['auth'])->group(function () {
 
         Route::get('listagem', 'UserController@index');
 
+        Route::get('edit/{id}', 'UserController@edit');
+
+        Route::post('update', 'UserController@update');
+
         Route::get('destroy/{id}', 'UserController@destroy');
     });
 
