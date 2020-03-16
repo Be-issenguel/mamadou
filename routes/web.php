@@ -52,6 +52,8 @@ Route::middleware(['auth'])->group(function () {
         Route::get('create', 'UserController@create');
 
         Route::post('store', 'UserController@store');
+
+        Route::get('listagem', 'UserController@index');
     });
 
 });
