@@ -54,6 +54,8 @@ Route::middleware(['auth'])->group(function () {
         Route::post('store', 'UserController@store');
 
         Route::get('listagem', 'UserController@index');
+
+        Route::get('destroy/{id}', 'UserController@destroy');
     });
 
 });

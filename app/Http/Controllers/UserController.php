@@ -93,6 +93,7 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        User::destroy(decrypt($id));
+        return back();
     }
 }
