@@ -14,10 +14,10 @@ class UsersTableSeeder extends Seeder
     public function run()
     {
         DB::table('users')->insert([
-            ['name' => 'Bernardo Issenguel','email' => 'bernardo@gmail.com','password' => Hash::make('321')],
-            ['name' => 'Manuel Issenguel','email' => 'manuel@gmail.com','password' => Hash::make('321')],
-            ['name' => 'Guvulo Issenguel','email' => 'guvulo@gmail.com','password' => Hash::make('321')],
-            ['name' => 'Isenguel Issenguel','email' => 'issenguel@gmail.com','password' => Hash::make('321')]
+            ['name' => 'Bernardo Issenguel', 'genero' => 'Masculino', 'telefone' => '929616583', 'email' => 'bernardo@gmail.com', 'password' => Hash::make('321')],
+            ['name' => 'Manuel Issenguel', 'genero' => 'Masculino', 'telefone' => '994856927', 'email' => 'manuel@gmail.com', 'password' => Hash::make('321')],
+            ['name' => 'Guvulo Issenguel', 'genero' => 'Masculino', 'telefone' => '994856928', 'email' => 'guvulo@gmail.com', 'password' => Hash::make('321')],
+            ['name' => 'Isenguel Issenguel', 'genero' => 'Masculino', 'telefone' => '994866937', 'email' => 'issenguel@gmail.com', 'password' => Hash::make('321')],
         ]);
     }
 }
