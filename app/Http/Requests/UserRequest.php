@@ -26,7 +26,7 @@ class UserRequest extends FormRequest
         return [
             'nome' => 'required',
             'email' => 'required|email|unique:users,email',
-            'palavra_passe' => 'required|confirmed',
+            'telefone' => 'required||regex:/^[9]{1}[1-9]{1}[0-9]{7}$/i',
         ];
     }
 

@@ -20,6 +20,17 @@
 </div>
 
 <div class="w3-row w3-section">
+  <div class="w3-col" style="width:50px"><i class="w3-xxlarge fa fa-venus-mars"></i></div>
+    <div class="w3-rest">
+      <select name="genero" id="" class="w3-input w3-border" required>
+        <option value="" disabled selected>Escolha o gênero do funcionário</option>
+        <option value="Masculino">Masculino</option>
+        <option value="Feminino">Feminino</option>
+      </select>
+    </div>
+</div>
+
+<div class="w3-row w3-section">
   <div class="w3-col" style="width:50px"><i class="w3-xxlarge fa fa-envelope"></i></div>
     <div class="w3-rest">
       <input class="w3-input w3-border" name="email" type="email" value="{{ isset($funcionario->id)?$funcionario->quantidade:old('email') }}" min="1" placeholder="Email do funcionário">
@@ -28,36 +39,25 @@
       @endif
     </div>
 </div>
+<div class="w3-row w3-section">
+  <div class="w3-col" style="width:50px"><i class="w3-xxlarge fa fa-phone"></i></div>
+    <div class="w3-rest">
+      <input class="w3-input w3-border" name="telefone" type="phone" value="{{ isset($funcionario->id)?$funcionario->quantidade:old('telefone') }}" placeholder="Telefone do funcionário">
+      @if ($errors->has('telefone'))
+        <span class="w3-error">{{ $errors->first('telefone') }}</span>
+      @endif
+    </div>
+</div>
 
 <div class="w3-row w3-section">
   <div class="w3-col" style="width:50px"><i class="w3-xxlarge fa fa-users"></i></div>
     <div class="w3-rest">
       <select name="papel" id="" class="w3-input w3-border" required>
-        <option value="" disabled selected>Escolha o grupo</option>
+        <option value="" disabled selected>Escolha o grupo do funcionário</option>
         @foreach ($roles as $role)
           <option value="{{ $role->id }}">{{ $role->nome }}</option>
         @endforeach
       </select>
-    </div>
-</div>
-
-<div class="w3-row w3-section">
-  <div class="w3-col" style="width:50px"><i class="w3-xxlarge fa fa-lock"></i></div>
-    <div class="w3-rest">
-      <input class="w3-input w3-border" name="palavra_passe" type="password" placeholder="palavra_passe">
-      @if ($errors->has('palavra_passe'))
-        <span class="w3-error">{{ $errors->first('palavra_passe') }}</span>
-      @endif
-    </div>
-</div>
-
-<div class="w3-row w3-section">
-  <div class="w3-col" style="width:50px"><i class="w3-xxlarge fa fa-user-lock"></i></div>
-    <div class="w3-rest">
-      <input class="w3-input w3-border" name="palavra_passe_confirmation" type="password" placeholder="Confirme a palavra passe">
-      @if ($errors->has('palavra_passe_confirmation'))
-        <span class="w3-error">{{ $errors->first('palavra_passe_confirmation') }}</span>
-      @endif
     </div>
 </div>
 
