@@ -2,9 +2,9 @@
 
 namespace App;
 
-use Illuminate\Notifications\Notifiable;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\DB;
 
 class User extends Authenticatable
 {
@@ -46,5 +46,13 @@ class User extends Authenticatable
     public function fornecedores()
     {
         return $this->hasMany(Fornecedor::class);
+    }
+
+    public function saveRole($role_id)
+    {
+        DB::table('role_user')->insert([
+            'role_id' => $role_id,
+            'user_id' => $this->id,
+        ]);
     }
 }

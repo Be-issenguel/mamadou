@@ -43,7 +43,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
         <i class="fa fa-user-tie"></i> Funcionários
     </div>
     <div id="funcionarios" class="w3-hide w3-black w3-card-4">
-        <a href="#" class="w3-bar-item w3-button" id="inside-link"> <i class="fa fa-user-plus"></i> Novo Funcionário</a>
+        <a href="{{ action('UserController@create') }}" class="w3-bar-item w3-button" id="inside-link"> <i class="fa fa-user-plus"></i> Novo Funcionário</a>
         <a href="#" class="w3-bar-item w3-button" id="inside-link"> <i class="fa fa-poll-h"></i> Lista de Funcionários </a>
     </div>
 

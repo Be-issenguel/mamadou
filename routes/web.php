@@ -48,4 +48,10 @@ Route::middleware(['auth'])->group(function () {
         Route::post('update', 'FornecedorController@update');
     });
 
+    Route::prefix('funcionario')->group(function () {
+        Route::get('create', 'UserController@create');
+
+        Route::post('store', 'UserController@store');
+    });
+
 });
