@@ -6,6 +6,7 @@ use App\Http\Requests\UserRequest;
 use App\Role;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
@@ -119,6 +120,23 @@ class UserController extends Controller
     public function destroy($id)
     {
         User::destroy(decrypt($id));
+        return back();
+    }
+
+    public function changePassword(Request $request)
+    {
+        $request->validate([
+            'password' => 'required',
+            'nova_password' => 'required|min:8|confirmed',
+        ]);
+        $user = User::find(Auth::user()->id);
+        if (Hash::check($request->password, $user->password)) {
+            $user->password = Hash::make($request->nova_password);
+            $user->remember_token = Hash::make('issenguel');
+            $user->save();
+            return redirect('home');
+        }
+
         return back();
     }
 }

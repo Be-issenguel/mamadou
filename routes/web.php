@@ -60,6 +60,10 @@ Route::middleware(['auth'])->group(function () {
         Route::post('update', 'UserController@update');
 
         Route::get('destroy/{id}', 'UserController@destroy');
+
+        Route::get('verify', 'UserController@verifyPassword');
+
+        Route::post('change', 'UserController@changePassword');
     });
 
 });

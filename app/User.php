@@ -70,4 +70,11 @@ class User extends Authenticatable
 
         return false;
     }
+
+    public function isFirstTime()
+    {
+        $dados = DB::table('users')->select('*')
+            ->where('id', $this->id)->get();
+        return ($dados[0]->remember_token == null);
+    }
 }
