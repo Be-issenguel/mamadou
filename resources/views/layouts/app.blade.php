@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 <link rel="stylesheet" href="{{ asset('css/fontawesome/css/all.css') }}">
+<script src="{{ asset('js/jquery-3.3.1.min.js') }}"></script>
 <style>
 html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
 </style>
@@ -67,7 +68,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
         <i class="fa fa-shopping-cart"></i> Vendas 
     </div>
     <div id="vendas" class="w3-hide w3-black w3-card-4">
-        <a href="#" class="w3-bar-item w3-button" id="inside-link"> <i class="fa fa-cart-plus"></i> Nova Venda </a>
+        <a href="{{ action('VendaController@listarProdutos') }}" class="w3-bar-item w3-button" id="inside-link"> <i class="fa fa-cart-plus"></i> Nova Venda </a>
         <a href="#" class="w3-bar-item w3-button" id="inside-link">Link</a>
     </div>
 
@@ -101,7 +102,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
   
   <!-- End page content -->
 </div>
-
+@yield('js')
 <script>
 // Get the Sidebar
 var mySidebar = document.getElementById("mySidebar");

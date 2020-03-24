@@ -66,4 +66,10 @@ Route::middleware(['auth'])->group(function () {
         Route::post('change', 'UserController@changePassword');
     });
 
+    Route::prefix('venda')->group(function () {
+        Route::get('nova/{id?}', 'VendaController@listarProdutos');
+
+        Route::get('carrinho', 'VendaController@carrinho');
+    });
+
 });
