@@ -114,7 +114,11 @@ class VendaController extends Controller
      */
     public function carrinho()
     {
-        dd(session('carrinho'));
+        $carrinho = array();
+        foreach (session('carrinho')['produtos'] as $id_produto) {
+            $carrinho = array_prepend($carrinho, Produto::find($id_produto));
+        }
+        return view('venda.carrinho')->withProdutos($carrinho);
     }
 
     public function esvaziarCarrinho()
