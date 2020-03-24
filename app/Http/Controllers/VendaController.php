@@ -116,4 +116,10 @@ class VendaController extends Controller
     {
         dd(session('carrinho'));
     }
+
+    public function esvaziarCarrinho()
+    {
+        session()->forget('carrinho');
+        return back();
+    }
 }

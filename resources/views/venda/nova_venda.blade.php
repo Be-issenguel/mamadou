@@ -10,6 +10,8 @@
     <thead>
       <a href="{{ action('VendaController@carrinho') }}">
       <button id="btn-carrinho" class="w3-button w3-xlarge w3-blue" disabled><span class="carrinho">{{ count(session('carrinho')['produtos']) }}</span> <i class="fa fa-shopping-cart"></i></button>
+      </a>
+      <a href="{{ action('VendaController@esvaziarCarrinho') }}">
       <button class="w3-button w3-xlarge w3-red"><span>Esvaziar</span> <i class="fa fa-cart-arrow-down"></i></button>
       </a>
       <tr class="w3-red">

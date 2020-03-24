@@ -70,6 +70,8 @@ Route::middleware(['auth'])->group(function () {
         Route::get('nova/{id?}', 'VendaController@listarProdutos');
 
         Route::get('carrinho', 'VendaController@carrinho');
+
+        Route::get('esvaziar', 'VendaController@esvaziarCarrinho');
     });
 
 });
