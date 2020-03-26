@@ -72,6 +72,8 @@ Route::middleware(['auth'])->group(function () {
         Route::get('carrinho', 'VendaController@carrinho');
 
         Route::get('esvaziar', 'VendaController@esvaziarCarrinho');
+
+        Route::post('store', 'VendaController@store');
     });
 
 });

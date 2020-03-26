@@ -59,7 +59,7 @@
             var url = "{{ url('venda/nova') }}";
             $.get(url+'/'+id, function(dados,status){
               if(status == 'success'){
-                alert('Já está');
+                
               }
             });
           }

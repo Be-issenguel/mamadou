@@ -3,10 +3,10 @@
 @section('titulo')
     {{ __('PRODUTOS A COMPRAR') }}
 @endsection
-
 @section('conteudo')
 <div class="w3-container">
   <table class="w3-table-all">
+      <h2 class="token">@csrf</h2>
     <thead>
         <button class="w3-button w3-xlarge w3-green">Preço Total: <span class="pt"></span> <i class="fa fa-dollar-sign"></i></button>
         <tr class="w3-red">
@@ -32,8 +32,8 @@
         @endforeach
     </tbody>
 </table>
-<a href="#" style="float: right">
-    <button class="w3-button w3-xlarge w3-green"><span class="carrinho">Finalizar Venda</span> <i class="fa fa-shopping-cart"></i></button>
+<a href="#" style="float: right" class="finalizar">
+    <button class="w3-button w3-xlarge w3-green">Finalizar Venda <i class="fa fa-shopping-cart"></i></button>
 </a>
 </div>
 
@@ -61,6 +61,26 @@
                     calcular_total();
                 }
             }
+        });
+
+        $('.finalizar').click(function (){
+            venda = Array();
+            venda.push($('.pt').text());
+            
+            
+            $('tbody').children('tr').each(function (){
+                id = $(this).data('id');
+                quantidade = $(this).children('.qtd').text();
+                venda.push({"id": id, "quantidade": quantidade});
+            });
+            _token = $('.token').children('input').val();
+           $.post("{{ action('VendaController@store') }}",
+                {venda: venda, _token: _token}, function (dados, status){
+                 if(status == 'success'){
+                    location.href = "{{ action('VendaController@listarProdutos') }}";
+                 }
+                }
+            );
         });
 
         function calcular_total(){

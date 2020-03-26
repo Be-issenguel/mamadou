@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Produto;
+use App\Venda;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class VendaController extends Controller
 {
@@ -59,7 +62,23 @@ class VendaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $venda = new Venda();
+        $venda->user_id = Auth::user()->id;
+        $venda->data = now();
+        $venda->total_compra = $request->venda[0];
+        $venda->save();
+        $venda = Venda::find($venda->id);
+        for ($i = 1; $i < count($request->venda); $i++) {
+            DB::table('venda_produto')->insert(
+                [
+                    'venda_id' => $venda->id,
+                    'produto_id' => $request->venda[$i]['id'],
+                    'quantidade' => $request->venda[$i]['quantidade'],
+                ]
+            );
+        }
+        session()->forget('carrinho');
+        return 1;
     }
 
     /**
