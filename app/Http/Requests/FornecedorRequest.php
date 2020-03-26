@@ -25,7 +25,7 @@ class FornecedorRequest extends FormRequest
     {
         return [
             'nome' => 'required',
-            'nif' => 'required|unique:forenecedors,nif|regex:/^[0-9]{9}[A-Z]{2}[0-9]{3}$/i',
+            'nif' => 'required|unique:fornecedors,nif|regex:/^[0-9]{9}[A-Z]{2}[0-9]{3}$/i',
             'genero' => 'required',
             'telefone' => 'required|unique:fornecedors,telefone|regex:/^[9]{1}[1-9]{1}[0-9]{7}$/i',
         ];
