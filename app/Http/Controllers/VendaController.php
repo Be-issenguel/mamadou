@@ -37,7 +37,7 @@ class VendaController extends Controller
                 $produto = Produto::find($id);
                 session()->push('carrinho.produtos', $produto->id);
             } else {
-
+                session(['carrinho' => ['produtos' => array()]]);
             }
         }
         $produtos = Produto::all();
@@ -69,7 +69,7 @@ class VendaController extends Controller
         $venda->save();
         $venda = Venda::find($venda->id);
         for ($i = 1; $i < count($request->venda); $i++) {
-            DB::table('venda_produto')->insert(
+            DB::table('produto_venda')->insert(
                 [
                     'venda_id' => $venda->id,
                     'produto_id' => $request->venda[$i]['id'],
