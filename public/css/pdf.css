@@ -1,0 +1,26 @@
+.fat-rodape-final td,
+thead {
+    border-bottom: 3px double black;
+}
+
+thead th {
+    text-align: center;
+}
+
+.fat-rodape td {
+    border-top: 3px double black;
+    font-size: 12pt;
+    font-weight: bold;
+}
+
+h5 {
+    margin-left: 35%;
+    font-weight: bolder;
+}
+
+.operador {
+    border-bottom: 1px double black;
+    padding-bottom: 2%;
+    font-weight: bold;
+    font-family: 'Courier New', Courier, monospace;
+}
