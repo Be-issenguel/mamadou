@@ -35,6 +35,9 @@
 <a href="{{ action('VendaController@listarProdutos') }}" style="float: right" class="finalizar" target="_blank">
     <button class="w3-button w3-xlarge w3-green">Finalizar Venda <i class="fa fa-shopping-cart"></i></button>
 </a>
+<a href="{{  action('VendaController@listarProdutos') }}">
+    <button class="w3-button w3-xlarge w3-blue"><i class="fa fa-hand-point-left"></i>Voltar </button>
+</a>
 </div>
 
 @endsection
@@ -77,6 +80,7 @@
            $.post("{{ action('VendaController@store') }}",
                 {venda: venda, _token: _token}, function (dados, status){
                  if(status == 'success'){
+                     
                     location.href = "{{ action('pdf\PdfVendaController@factura') }}";
                  }
                 }
