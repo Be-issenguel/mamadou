@@ -26,9 +26,9 @@ class CreateProdutosTable extends Migration
             $table->collation = 'utf8_general_ci';
         });
 
-        Schema::create('venda_produto', function (Blueprint $table) {
-            $table->integer('venda_id')->unsigned();
+        Schema::create('produto_venda', function (Blueprint $table) {
             $table->integer('produto_id')->unsigned();
+            $table->integer('venda_id')->unsigned();
             $table->integer('quantidade');
             $table->primary(['venda_id', 'produto_id']);
             $table->foreign('venda_id')->references('id')->on('vendas')->onDelete('cascade');
