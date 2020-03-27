@@ -32,7 +32,7 @@
         @endforeach
     </tbody>
 </table>
-<a href="#" style="float: right" class="finalizar">
+<a href="{{ action('VendaController@listarProdutos') }}" style="float: right" class="finalizar" target="_blank">
     <button class="w3-button w3-xlarge w3-green">Finalizar Venda <i class="fa fa-shopping-cart"></i></button>
 </a>
 </div>
@@ -77,7 +77,7 @@
            $.post("{{ action('VendaController@store') }}",
                 {venda: venda, _token: _token}, function (dados, status){
                  if(status == 'success'){
-                    location.href = "{{ action('VendaController@listarProdutos') }}";
+                    location.href = "{{ action('pdf\PdfVendaController@factura') }}";
                  }
                 }
             );
