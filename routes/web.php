@@ -74,6 +74,8 @@ Route::middleware(['auth'])->group(function () {
         Route::get('esvaziar', 'VendaController@esvaziarCarrinho');
 
         Route::post('store', 'VendaController@store');
+
+        Route::get('factura', 'pdf\PdfVendaController@factura');
     });
 
 });

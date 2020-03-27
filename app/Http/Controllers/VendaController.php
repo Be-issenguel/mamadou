@@ -37,7 +37,9 @@ class VendaController extends Controller
                 $produto = Produto::find($id);
                 session()->push('carrinho.produtos', $produto->id);
             } else {
-                session(['carrinho' => ['produtos' => array()]]);
+                if (!count(session('carrinho')['produtos']) > 0) {
+                    session(['carrinho' => ['produtos' => array()]]);
+                }
             }
         }
         $produtos = Produto::all();
@@ -134,8 +136,12 @@ class VendaController extends Controller
     public function carrinho()
     {
         $carrinho = array();
-        foreach (session('carrinho')['produtos'] as $id_produto) {
-            $carrinho = array_prepend($carrinho, Produto::find($id_produto));
+        if (session('carrinho')['produtos'] != null) {
+            foreach (session('carrinho')['produtos'] as $id_produto) {
+                $carrinho = array_prepend($carrinho, Produto::find($id_produto));
+            }
+        } else {
+            return back();
         }
         return view('venda.carrinho')->withProdutos($carrinho);
     }
