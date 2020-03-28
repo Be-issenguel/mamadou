@@ -71,6 +71,9 @@
                 $.get(url+'/'+id, function(dados,status){
                     if(status == 'success'){
                        calcular_total();
+                       if(contar_produtos_carrinho()){
+                           location.href = "{{ action('VendaController@listarProdutos') }}";
+                       }
                     }
                 })
             }
@@ -90,7 +93,6 @@
            $.post("{{ action('VendaController@store') }}",
                 {venda: venda, _token: _token}, function (dados, status){
                  if(status == 'success'){
-                     
                     location.href = "{{ action('pdf\PdfVendaController@factura') }}";
                  }
                 }
@@ -103,6 +105,14 @@
                 preco_total = preco_total + parseInt($(this).children('.total_produto').text());
             });
             $('.pt').text(preco_total);
+        }
+
+        function contar_produtos_carrinho(){
+            cont = 0;
+            $('tbody').children('tr').each(function(){
+                cont++;
+            });
+            return cont == 0;
         }
     });
 </script>
