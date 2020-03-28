@@ -21,7 +21,7 @@
         @foreach ($produtos as $produto)
         <tr data-id="{{ $produto->id }}">
             <td>{{ $produto->descricao }}</td>
-            <td class="qtd">1</td>
+            <td class="qtd" data-value="{{ $produto->quantidade }}">1</td>
             <td class="preco">{{ $produto->preco_venda }}</td>
             <td class="total_produto">{{ $produto->preco_venda }}</td>
             <td>
@@ -50,11 +50,15 @@
         $("a").click( function (){
             var accao = $(this).data('value');
             if (accao == 'add'){
-                qtd = parseInt($(this).parents('tr').children(".qtd").text()) + 1;
-                $(this).parents('tr').children(".qtd").text(qtd);
-                preco = parseFloat($(this).parents('tr').children(".preco").text()) * qtd;
-                $(this).parents('tr').children(".total_produto").text(preco);
-                calcular_total();
+                qtd_real = parseInt($(this).parents('tr').children(".qtd").data('value'));
+                qtd_actual = parseInt($(this).parents('tr').children(".qtd").text());
+                if(qtd_real - 1 > qtd_actual){
+                    qtd_actual++;
+                    $(this).parents('tr').children(".qtd").text(qtd_actual);
+                    preco = parseFloat($(this).parents('tr').children(".preco").text()) * qtd_actual;
+                    $(this).parents('tr').children(".total_produto").text(preco);
+                    calcular_total();
+                } 
             }else if(accao == 'dec'){
                 qtd = parseInt($(this).parents('tr').children(".qtd").text());
                 if (qtd > 1){
