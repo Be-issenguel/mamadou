@@ -76,6 +76,8 @@ Route::middleware(['auth'])->group(function () {
         Route::post('store', 'VendaController@store');
 
         Route::get('factura', 'pdf\PdfVendaController@factura');
+
+        Route::get('remover/{id}', 'VendaController@removerCarrinho');
     });
 
 });

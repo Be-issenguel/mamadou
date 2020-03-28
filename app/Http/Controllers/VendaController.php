@@ -151,4 +151,14 @@ class VendaController extends Controller
         session()->forget('carrinho');
         return back();
     }
+
+    public function removerCarrinho($id)
+    {
+        $array = session('carrinho')['produtos'];
+        $key = array_search($id, $array);
+        unset($array[$key]);
+        session()->forget('carrinho');
+        session(['carrinho' => ['produtos' => $array]]);
+        return $key;
+    }
 }

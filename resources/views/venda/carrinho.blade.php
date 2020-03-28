@@ -26,7 +26,8 @@
             <td class="total_produto">{{ $produto->preco_venda }}</td>
             <td>
                 <a href="#" data-value="add" data-id="{{ $produto->id }}"  class="w3-bar-item w3-button w3-circle w3-blue"> <i class="fa fa-plus"></i> </a>
-                <a href="#" data-value="dec" data-id="{{ $produto->id }}"  class="w3-bar-item w3-button w3-circle w3-red"> <i class="fa fa-minus"></i> </a>
+                <a href="#" data-value="dec" data-id="{{ $produto->id }}"  class="w3-bar-item w3-button w3-circle w3-yellow"> <i class="fa fa-minus"></i> </a>
+                <a href="#" data-value="rem" data-id="{{ $produto->id }}"  class="w3-bar-item w3-button w3-circle w3-red"> <i class="fa fa-trash"></i> </a>
             </td>
         </tr>
         @endforeach
@@ -60,9 +61,18 @@
                     qtd = qtd - 1;
                     $(this).parents('tr').children(".qtd").text(qtd);
                     preco = parseFloat($(this).parents('tr').children(".preco").text()) * qtd;
-                    $(this).parents('tr').children(".total_produto").text(preco);
+                    (this).parents('tr').children(".total_produto").text(preco);
                     calcular_total();
                 }
+            }else if(accao == 'rem'){
+                id = $(this).data('id');
+                $(this).parents('tr').remove();
+                url = "{{ url('venda/remover') }}";
+                $.get(url+'/'+id, function(dados,status){
+                    if(status == 'success'){
+                       calcular_total();
+                    }
+                })
             }
         });
 
