@@ -78,6 +78,9 @@ class VendaController extends Controller
                     'quantidade' => $request->venda[$i]['quantidade'],
                 ]
             );
+            $produto = Produto::find($request->venda[$i]['id']);
+            $produto->quantidade -= $request->venda[$i]['quantidade'];
+            $produto->save();
         }
         session()->forget('carrinho');
         return 1;
