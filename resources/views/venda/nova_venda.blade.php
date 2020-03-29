@@ -23,17 +23,16 @@
     </thead>
     <tbody>
       @foreach ($produtos as $produto)
-      @if (!is_int(array_search($produto->id, session('carrinho')['produtos'])))
-          <tr data-id="teste">
-            <td>{{ $produto->descricao }}</td>
-            <td>{{ $produto->quantidade }}</td>
-            <td>{{ $produto->preco_venda }}</td>
-            <td>
-              <a href="#" data-value="btn-add" data-id="{{ $produto->id }}" id="btn-adicionar" class="w3-bar-item w3-button w3-green"> <i class="fa fa-cart-plus"></i> </a>
-            </td>
-          </tr>
-      @endif
-          
+        @if (!is_int(array_search($produto->id, session('carrinho')['produtos'])) and $produto->quantidade > 1)
+            <tr data-id="teste">
+              <td>{{ $produto->descricao }}</td>
+              <td>{{ $produto->quantidade }}</td>
+              <td>{{ $produto->preco_venda }}</td>
+              <td>
+                <a href="#" data-value="btn-add" data-id="{{ $produto->id }}" id="btn-adicionar" class="w3-bar-item w3-button w3-green"> <i class="fa fa-cart-plus"></i> </a>
+              </td>
+            </tr>
+        @endif  
       @endforeach
     </tbody>
   </table>
