@@ -60,14 +60,15 @@
                     calcular_total();
                 } 
             }else if(accao == 'dec'){
-                qtd = parseInt($(this).parents('tr').children(".qtd").text());
-                if (qtd > 1){
-                    qtd = qtd - 1;
-                    $(this).parents('tr').children(".qtd").text(qtd);
-                    preco = parseFloat($(this).parents('tr').children(".preco").text()) * qtd;
-                    (this).parents('tr').children(".total_produto").text(preco);
+                //qtd_real = parseInt($(this).parents('tr').children(".qtd").data('value'));
+                qtd_actual = parseInt($(this).parents('tr').children(".qtd").text());
+                if(qtd_actual > 1 ){
+                    qtd_actual--;
+                    $(this).parents('tr').children(".qtd").text(qtd_actual);
+                    preco = parseFloat($(this).parents('tr').children(".preco").text()) * qtd_actual;
+                    $(this).parents('tr').children(".total_produto").text(preco);
                     calcular_total();
-                }
+                } 
             }else if(accao == 'rem'){
                 id = $(this).data('id');
                 $(this).parents('tr').remove();
