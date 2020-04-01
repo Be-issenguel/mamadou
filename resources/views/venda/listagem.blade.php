@@ -8,12 +8,12 @@
     <table class="w3-table w3-bordered">
       <thead class="w3-red">
         <tr>
-          <th>Funcionário</th>
-          <th>Data</th>
-          <th>Produto</th>
-          <th>Quantidade</th>
-          <th>Valor</th>
-          <th>Opções</th>
+          <th><i class="fa fa-user"></i> Funcionário</th>
+          <th><i class="fa fa-calendar-day"></i> Data</th>
+          <th><i class="fa fa-cubes"></i> Produtos</th>
+          <th><i class="fa fa-balance-scale"></i> Quantidade</th>
+          <th><i class="fa fa-dollar-sign"></i> Valor</th>
+          <th><i class="fa fa-cogs"></i> Opções</th>
         </tr>
       </thead>
       <tbody>
