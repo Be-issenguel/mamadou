@@ -176,4 +176,27 @@ class VendaController extends Controller
         session(['carrinho' => ['produtos' => $array]]);
         return $key;
     }
+
+    /**
+     * Mostra todas as vendas do utlizador logado
+     *
+     * @return vendas
+     */
+    public function minhasVendas()
+    {
+        $vendas = Venda::all();
+        $dados = array();
+        foreach ($vendas as $venda) {
+            if ($venda->user_id == Auth::user()->id) {
+                array_push($dados, [
+                    'id' => $venda->id,
+                    'user' => $venda->user->name,
+                    'data' => $venda->created_at,
+                    'valor' => $venda->total_compra,
+                    'produtos' => $venda->findProdutos($venda->id),
+                ]);
+            }
+        }
+        return view('venda.minhas_vendas')->withVendas($dados);
+    }
 }
