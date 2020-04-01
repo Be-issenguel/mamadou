@@ -69,7 +69,9 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
     </div>
     <div id="vendas" class="w3-hide w3-black w3-card-4">
         <a href="{{ action('VendaController@listarProdutos') }}" class="w3-bar-item w3-button" id="inside-link"> <i class="fa fa-cart-plus"></i> Nova Venda </a>
-        <a href="#" class="w3-bar-item w3-button" id="inside-link">Link</a>
+        <a href="{{ action('VendaController@index') }}" class="w3-bar-item w3-button" id="inside-link"><i class="fa fa-list"></i> Listar Vendas</a>
+        <a href="#" class="w3-bar-item w3-button" id="inside-link"><i class="fa fa-store"></i> Minhas Vendas</a>
+        <a href="#" class="w3-bar-item w3-button" id="inside-link"><i class="fa fa-calendar"></i> Vendas Diárias</a>
     </div>
 
     <div class="w3-bar-item w3-button" onclick="myAccFunc('configuracao')">

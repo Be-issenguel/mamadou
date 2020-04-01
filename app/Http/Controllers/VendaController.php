@@ -11,13 +11,23 @@ use Illuminate\Support\Facades\DB;
 class VendaController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Mostra todas vendas.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        //
+        $vendas = Venda::all();
+        $dados = array();
+        foreach ($vendas as $venda) {
+            array_push($dados, [
+                'user' => $venda->user->name,
+                'data' => $venda->created_at,
+                'valor' => $venda->total_compra,
+                'produtos' => $venda->findProdutos($venda->id),
+            ]);
+        }
+        return view('venda.listagem')->withVendas($dados);
     }
 
     /**

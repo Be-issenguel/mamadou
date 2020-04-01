@@ -78,6 +78,8 @@ Route::middleware(['auth'])->group(function () {
         Route::get('factura', 'pdf\PdfVendaController@factura');
 
         Route::get('remover/{id}', 'VendaController@removerCarrinho');
+
+        Route::get('listagem', 'VendaController@index');
     });
 
 });
