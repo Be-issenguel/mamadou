@@ -80,6 +80,8 @@ Route::middleware(['auth'])->group(function () {
         Route::get('remover/{id}', 'VendaController@removerCarrinho');
 
         Route::get('listagem', 'VendaController@index');
+
+        Route::get('destroy/{id}', 'VendaController@destroy');
     });
 
 });

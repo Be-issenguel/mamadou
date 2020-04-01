@@ -21,6 +21,7 @@ class VendaController extends Controller
         $dados = array();
         foreach ($vendas as $venda) {
             array_push($dados, [
+                'id' => $venda->id,
                 'user' => $venda->user->name,
                 'data' => $venda->created_at,
                 'valor' => $venda->total_compra,
@@ -138,7 +139,8 @@ class VendaController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Venda::destroy($id);
+        return back();
     }
 
     /**
