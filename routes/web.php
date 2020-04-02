@@ -84,6 +84,8 @@ Route::middleware(['auth'])->group(function () {
         Route::get('destroy/{id}', 'VendaController@destroy');
 
         Route::get('minhas_vendas', 'VendaController@minhasVendas');
+
+        Route::any('vendas_diarias/{page?}', 'VendaController@vendasPorData');
     });
 
 });

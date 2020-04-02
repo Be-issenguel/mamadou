@@ -218,4 +218,22 @@ class VendaController extends Controller
         ]);
         return view('venda.minhas_vendas')->withVendas($dados);
     }
+
+    public function vendasPorData(Request $request)
+    {
+        $vendas = Venda::where('data', $request->data)->get();
+        $dados = array();
+        foreach ($vendas as $venda) {
+            if ($venda->user_id == Auth::user()->id) {
+                array_push($dados, [
+                    'id' => $venda->id,
+                    'user' => $venda->user->name,
+                    'data' => $venda->created_at,
+                    'valor' => $venda->total_compra,
+                    'produtos' => $venda->findProdutos($venda->id),
+                ]);
+            }
+        }
+        return view('venda.vendas_diarias')->withVendas($dados);
+    }
 }

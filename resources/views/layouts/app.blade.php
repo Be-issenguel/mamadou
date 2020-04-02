@@ -36,6 +36,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
   <hr>
   <div class="w3-container">
     <h5 style="text-align:center">MENU</h5>
+
   </div>
   <div class="w3-bar-block">
     
@@ -71,7 +72,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
         <a href="{{ action('VendaController@listarProdutos') }}" class="w3-bar-item w3-button" id="inside-link"> <i class="fa fa-cart-plus"></i> Nova Venda </a>
         <a href="{{ action('VendaController@index') }}" class="w3-bar-item w3-button" id="inside-link"><i class="fa fa-list"></i> Listar Vendas</a>
         <a href="{{ action('VendaController@minhasVendas') }}" class="w3-bar-item w3-button" id="inside-link"><i class="fa fa-store"></i> Minhas Vendas</a>
-        <a href="#" class="w3-bar-item w3-button" id="inside-link"><i class="fa fa-calendar"></i> Vendas Diárias</a>
+        <a href="#" onclick="document.getElementById('mdl_vendaPorData').style.display='block'" class="w3-bar-item w3-button" id="inside-link"><i class="fa fa-calendar"></i> Vendas Por Data</a>
     </div>
 
     <div class="w3-bar-item w3-button" onclick="myAccFunc('configuracao')">
@@ -100,6 +101,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
 
   <div class="w3-container">
     @yield('conteudo')
+    @include('modals.produto_modals')
   </div>
   
   <!-- End page content -->
