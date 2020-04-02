@@ -35,9 +35,9 @@
               @endif
             </tr>
           @endfor
-          
         </tr>       
         @endforeach
       </tbody>
     </table>
+    {{ $vendas->links() }}
     @endsection

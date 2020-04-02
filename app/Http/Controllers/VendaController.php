@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Produto;
 use App\Venda;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\LengthAwarePaginator as Pagination;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -15,7 +16,7 @@ class VendaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $vendas = Venda::all();
         $dados = array();
@@ -28,6 +29,15 @@ class VendaController extends Controller
                 'produtos' => $venda->findProdutos($venda->id),
             ]);
         }
+        $count = count($dados);
+        $page = $request->page;
+        $perPage = 2;
+        $offset = ($page - 1) * $perPage;
+        $dados = array_slice($dados, $offset, $perPage);
+        $dados = new Pagination($dados, $count, $perPage, $page, [
+            'path' => $request->url(),
+            'query' => $request->query(),
+        ]);
         return view('venda.listagem')->withVendas($dados);
     }
 
@@ -182,7 +192,7 @@ class VendaController extends Controller
      *
      * @return vendas
      */
-    public function minhasVendas()
+    public function minhasVendas(Request $request)
     {
         $vendas = Venda::all();
         $dados = array();
@@ -197,6 +207,15 @@ class VendaController extends Controller
                 ]);
             }
         }
+        $count = count($dados);
+        $page = $request->page;
+        $perPage = 1;
+        $offset = ($page - 1) * $perPage;
+        $dados = array_slice($dados, $offset, $perPage);
+        $dados = new Pagination($dados, $count, $perPage, $page, [
+            'path' => $request->url(),
+            'query' => $request->query(),
+        ]);
         return view('venda.minhas_vendas')->withVendas($dados);
     }
 }
