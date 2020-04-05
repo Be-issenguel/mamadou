@@ -74,6 +74,8 @@ Route::middleware(['auth'])->group(function () {
         Route::any('vendas_diarias/{page?}', 'VendaController@vendasPorData');
 
         Route::get('comunicar_estorno/{id}', 'VendaController@comunicarEstorno');
+
+        Route::get('vendas_por_estornar', 'VendaController@findVendasPorEstornar');
     });
 
 });

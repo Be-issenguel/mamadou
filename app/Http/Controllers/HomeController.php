@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Venda;
 use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
@@ -26,6 +27,8 @@ class HomeController extends Controller
         if (Auth::user()->isFirstTime()) {
             return view('auth.password_verify');
         }
+        $qtdEstorno = Venda::where('estado', 'por_estornar')->count();
+        session(['qtd_estorno' => $qtdEstorno]);
         return view('home');
     }
 }

@@ -18,7 +18,7 @@ class VendaController extends Controller
      */
     public function index(Request $request)
     {
-        $vendas = Venda::all();
+        $vendas = Venda::where('estado', 'concluida')->get();
         $dados = array();
         foreach ($vendas as $venda) {
             array_push($dados, [
@@ -149,6 +149,7 @@ class VendaController extends Controller
      */
     public function destroy($id)
     {
+        session(['qtd_estorno' => Venda::where('estado', 'por_estornar')->count()]);
         Venda::destroy($id);
         return back();
     }
@@ -194,7 +195,7 @@ class VendaController extends Controller
      */
     public function minhasVendas(Request $request)
     {
-        $vendas = Venda::all();
+        $vendas = Venda::where('estado', 'concluida')->get();
         $dados = array();
         foreach ($vendas as $venda) {
             if ($venda->user_id == Auth::user()->id) {
@@ -221,7 +222,7 @@ class VendaController extends Controller
 
     public function vendasPorData(Request $request)
     {
-        $vendas = Venda::where('data', $request->data)->get();
+        $vendas = Venda::where(['data' => $request->data, 'estado' => 'concluida'])->get();
         $dados = array();
         foreach ($vendas as $venda) {
             if ($venda->user_id == Auth::user()->id) {
@@ -242,6 +243,33 @@ class VendaController extends Controller
         $venda = Venda::find($id);
         $venda->estado = 'por_estornar';
         $venda->save();
+        $qtdEstorno = Venda::where('estado', 'por_estornar')->count();
+        session(['qtd_estorno' => $qtdEstorno]);
         return redirect()->action('VendaController@minhasVendas');
+    }
+
+    public function findVendasPorEstornar(Request $request)
+    {
+        $vendas = Venda::where('estado', 'por_estornar')->get();
+        $dados = array();
+        foreach ($vendas as $venda) {
+            array_push($dados, [
+                'id' => $venda->id,
+                'user' => $venda->user->name,
+                'data' => $venda->created_at,
+                'valor' => $venda->total_compra,
+                'produtos' => $venda->findProdutos($venda->id),
+            ]);
+        }
+        $count = count($dados);
+        $page = $request->page;
+        $perPage = 2;
+        $offset = ($page - 1) * $perPage;
+        $dados = array_slice($dados, $offset, $perPage);
+        $dados = new Pagination($dados, $count, $perPage, $page, [
+            'path' => $request->url(),
+            'query' => $request->query(),
+        ]);
+        return view('venda.listagem')->withVendas($dados);
     }
 }

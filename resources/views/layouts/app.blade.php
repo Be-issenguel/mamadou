@@ -65,6 +65,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
         <a href="{{ action('VendaController@index') }}" class="w3-bar-item w3-button" id="inside-link"><i class="fa fa-list"></i> Listar Vendas</a>
         <a href="{{ action('VendaController@minhasVendas') }}" class="w3-bar-item w3-button" id="inside-link"><i class="fa fa-store"></i> Minhas Vendas</a>
         <a href="#" onclick="document.getElementById('mdl_vendaPorData').style.display='block'" class="w3-bar-item w3-button" id="inside-link"><i class="fa fa-calendar"></i> Vendas Por Data</a>
+        <a href="{{ action('VendaController@findVendasPorEstornar') }}" class="w3-bar-item w3-button" id="inside-link"><i class="fa fa-store"></i> Vendas Por Estornar ({{ session('qtd_estorno') }})</a>
     </div>
 
     <div class="w3-bar-item w3-button" onclick="myAccFunc('configuracao')">
