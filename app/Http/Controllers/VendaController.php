@@ -236,4 +236,12 @@ class VendaController extends Controller
         }
         return view('venda.vendas_diarias')->withVendas($dados);
     }
+
+    public function comunicarEstorno($id)
+    {
+        $venda = Venda::find($id);
+        $venda->estado = 'por_estornar';
+        $venda->save();
+        return redirect()->action('VendaController@minhasVendas');
+    }
 }

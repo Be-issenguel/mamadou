@@ -28,7 +28,7 @@
               @if ($i == 0)
                 <td rowspan="{{ (count($venda['produtos']) + 1) }}">{{ $venda['valor'] }}</td>
                 <td rowspan="{{ (count($venda['produtos']) + 1) }}">
-                  <a href="{{ action('VendaController@destroy',['id' => $venda['id']]) }}" class="w3-btn w3-blue"><i class="fa fa-bullhorn"></i></a>
+                  <a href="{{ action('VendaController@comunicarEstorno',['id' => $venda['id']]) }}" class="w3-btn w3-blue"><i class="fa fa-bullhorn"></i></a>
                   <a href="{{ action('VendaController@destroy',['id' => $venda['id']]) }}" class="w3-btn w3-red"><i class="fa fa-cart-arrow-down"></i></a>
                 </td>
               @endif
