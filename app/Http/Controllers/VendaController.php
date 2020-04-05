@@ -151,6 +151,9 @@ class VendaController extends Controller
     {
         $venda = Venda::find($id);
         foreach ($venda->findProdutos($venda->id) as $produto) {
+            $p = Produto::find($produto->id);
+            $p->quantidade += $produto->quantidade;
+            $p->save();
             $venda->guardarVendaEstornada($venda->id, $produto->id, $produto->quantidade);
         }
         Venda::destroy($id);
