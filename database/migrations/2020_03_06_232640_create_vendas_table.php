@@ -28,7 +28,7 @@ class CreateVendasTable extends Migration
         Schema::create('estornos', function (Blueprint $table) {
             $table->integer('venda_id')->unsigned();
             $table->integer('produto_id')->unsigned();
-            $table->integer('quantidade_id')->unsigned();
+            $table->integer('quantidade')->unsigned();
             $table->timestamps();
         });
     }
