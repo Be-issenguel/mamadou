@@ -149,8 +149,12 @@ class VendaController extends Controller
      */
     public function destroy($id)
     {
-        session(['qtd_estorno' => Venda::where('estado', 'por_estornar')->count()]);
+        $venda = Venda::find($id);
+        foreach ($venda->findProdutos($venda->id) as $produto) {
+            $venda->guardarVendaEstornada($venda->id, $produto->id, $produto->quantidade);
+        }
         Venda::destroy($id);
+        session(['qtd_estorno' => Venda::where('estado', 'por_estornar')->count()]);
         return back();
     }
 

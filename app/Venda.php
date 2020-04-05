@@ -28,8 +28,17 @@ class Venda extends Model
             ->join('vendas', 'vendas.id', '=', 'produto_venda.venda_id')
             ->join('users', 'users.id', '=', 'vendas.user_id')
             ->where('vendas.id', $venda_id)
-            ->select('produtos.descricao', 'vendas.user_id', 'produtos.preco_venda', 'produto_venda.quantidade')
+            ->select('produtos.descricao', 'vendas.user_id', 'produtos.id', 'produtos.preco_venda', 'produto_venda.quantidade')
             ->get();
         return $produtos;
+    }
+
+    public function guardarVendaEstornada($venda_id, $produto_id, $quantidade)
+    {
+        DB::table('estornos')->insert([
+            'venda_id' => $venda_id,
+            'produto_id' => $produto_id,
+            'quantidade' => $quantidade,
+        ]);
     }
 }
