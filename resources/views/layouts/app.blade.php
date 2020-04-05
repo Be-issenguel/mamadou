@@ -49,14 +49,6 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
         <a href="{{ action('UserController@index') }}" class="w3-bar-item w3-button" id="inside-link"> <i class="fa fa-poll-h"></i> Lista de Funcionários </a>
     </div>
 
-    <div class="w3-bar-item w3-button" onclick="myAccFunc('fornecedores')">
-       <i class="fa fa-dolly"></i> Fornecedores 
-    </div>
-    <div id="fornecedores" class="w3-hide w3-black w3-card-4">
-        <a href="{{ action('FornecedorController@create') }}" class="w3-bar-item w3-button" id="inside-link"> <i class="fa fa-oil-can"></i> Novo Fornecedor</a>
-        <a href="{{ action('FornecedorController@index') }}" class="w3-bar-item w3-button" id="inside-link"> <i class="fa fa-clipboard-list"></i> Listar Fornecedores</a>
-    </div>
-
     <div class="w3-bar-item w3-button" onclick="myAccFunc('produtos')">
         <i class="fa fa-cubes"></i> Produtos 
     </i></div>

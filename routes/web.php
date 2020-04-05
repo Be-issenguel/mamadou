@@ -34,20 +34,6 @@ Route::middleware(['auth'])->group(function () {
         Route::post('update', 'ProdutoController@update');
     });
 
-    Route::prefix('fornecedor')->group(function () {
-        Route::get('create', 'FornecedorController@create');
-
-        Route::post('store', 'FornecedorController@store');
-
-        Route::get('listagem', 'FornecedorController@index');
-
-        Route::get('destroy/{id}', 'FornecedorController@destroy');
-
-        Route::get('edit/{id}', 'FornecedorController@edit');
-
-        Route::post('update', 'FornecedorController@update');
-    });
-
     Route::prefix('funcionario')->group(function () {
         Route::get('create', 'UserController@create');
 
